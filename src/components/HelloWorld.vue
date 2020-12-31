@@ -1,22 +1,6 @@
 <template>
   <div class='container-fluid'>
-    <b-navbar variant='light' fixed='top'>
-      <b-navbar-brand class='clickable' v-on:click='scrollToTop'>
-        {{ $t('meta.title') }}
-      </b-navbar-brand>
-
-      <b-navbar-nav class='ml-auto'>
-        <b-nav-item-dropdown :text='$t("meta.lang")'>
-          <b-dropdown-item v-on:click='changeLocale("en")'>
-            EN
-          </b-dropdown-item>
-          <b-dropdown-item v-on:click='changeLocale("ru")'>
-            RU
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-navbar>
-    <br>
+    <Nav></Nav>
 
     <div class='container'>
       <h3>What is this?</h3>
@@ -34,68 +18,40 @@
         Click on table cells to select your level.
       </b-alert>
 
-      <b-table-simple responsive=true>
-        <b-thead head-variant='light'>
-          <b-tr>
-            <b-th v-for='(field, i) in fields' :key='i'>
-                {{ $t('fields.' + field) }}
-            </b-th>
-          </b-tr>
-        </b-thead>
+      <LevelsTable :items="items"></LevelsTable>
 
-        <b-tbody>
-          <b-tr v-for='(row, i) in items' :key='row.current_level'>
-            <b-td><b>{{ row.topic }}</b></b-td>
-            <template v-for='lvl in 4'>
-              <template v-if='row.current_level === (lvl-1)'>
-                <b-td
-                  :key='lvl'
-                  class='clickable selected'>
-                  {{ row['level' + (lvl-1)] }}
-                </b-td>
-              </template>
-              <template v-else>
-                <b-td
-                  :key='lvl'
-                  class='clickable'
-                  v-on:click='handleClick(i, lvl-1)'>
-                  {{ row['level' + (lvl-1)] }}
-                </b-td>
-              </template>
-            </template>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
     </div>
   </div>
 </template>
 
 <script>
 import itemsList from '../assets/data.json';
+import Nav from './Nav';
+import LevelsTable from './LevelsTable';
 
 export default {
   name: 'HelloWorld',
+  components: {
+    Nav,
+    LevelsTable,
+  },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
       items: itemsList.map((x) => {
         x.current_level = -1; // eslint-disable-line
         return x;
       }),
-      fields: [
-        'topic',
-        'level0',
-        'level1',
-        'level2',
-        'level3',
-      ],
       showHelp: true,
+      areas: [
+        'Computer Science',
+        'Software Engineering',
+        'Programming',
+        'Experience',
+        'Knowledge',
+      ],
     };
   },
   methods: {
-    handleClick(itemId, newLevel) {
-      this.items[itemId].current_level = newLevel;
-    },
     changeLocale(newLocale) {
       this.$i18n.locale = newLocale;
     },
@@ -107,8 +63,6 @@ export default {
     messages: {
       en: {
         meta: {
-          lang: 'Lang',
-          title: 'Programmes\'s Competency Matrix',
         },
         fields: {
           topic: 'Topic',
@@ -120,8 +74,6 @@ export default {
       },
       ru: {
         meta: {
-          lang: 'Язык',
-          title: 'Матрица компетенций программиста',
         },
         fields: {
           topic: 'Тема',
