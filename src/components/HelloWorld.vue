@@ -18,14 +18,20 @@
         Click on table cells to select your level.
       </b-alert>
 
-      <LevelsTable :items="items"></LevelsTable>
+      <div v-for="area in areas" :key='area'>
+        <h3>{{ $t('areas.'+area) }}</h3>
+        <br>
+        <LevelsTable :allitems='getAreaItems(area)'></LevelsTable>
+        <br>
+        <br>
+      </div>
 
     </div>
   </div>
 </template>
 
 <script>
-import itemsList from '../assets/data.json';
+import allItemsList from '../assets/data.json';
 import Nav from './Nav';
 import LevelsTable from './LevelsTable';
 
@@ -37,32 +43,36 @@ export default {
   },
   data() {
     return {
-      items: itemsList.map((x) => {
-        x.current_level = -1; // eslint-disable-line
-        return x;
-      }),
       showHelp: true,
       areas: [
-        'Computer Science',
-        'Software Engineering',
-        'Programming',
-        'Experience',
-        'Knowledge',
+        'computer_science',
+        'software_engineering',
+        'programming',
+        'experience',
+        'knowledge',
       ],
     };
   },
   methods: {
-    changeLocale(newLocale) {
-      this.$i18n.locale = newLocale;
-    },
-    scrollToTop() {
-      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    getAreaItems(area) {
+      // eslint-disable-next-line
+      return allItemsList.filter(x => x.area === area).map(function (x) {
+        x.current_level = -1; // eslint-disable-line
+        return x;
+      });
     },
   },
   i18n: {
     messages: {
       en: {
         meta: {
+        },
+        areas: {
+          computer_science: 'Computer Science',
+          software_engineering: 'Software Engineering',
+          programming: 'Programming',
+          experience: 'Experience',
+          knowledge: 'Knowledge',
         },
         fields: {
           topic: 'Topic',
@@ -74,6 +84,13 @@ export default {
       },
       ru: {
         meta: {
+        },
+        areas: {
+          computer_science: 'Теория',
+          software_engineering: 'Разработка ПО',
+          programming: 'Программирование',
+          experience: 'Опыт',
+          knowledge: 'Знания',
         },
         fields: {
           topic: 'Тема',

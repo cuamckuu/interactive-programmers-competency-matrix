@@ -40,10 +40,11 @@
 export default {
   name: 'LevelsTable',
   props: [
-    'items',
+    'allitems',
   ],
   data() {
     return {
+      items: this.allitems,
       fields: [
         'topic',
         'level0',
@@ -56,6 +57,15 @@ export default {
   methods: {
     handleClick(itemId, newLevel) {
       this.items[itemId].current_level = newLevel;
+    },
+  },
+  computed: {
+    stats() {
+      // eslint-disable-next-line
+      return this.items.reduce(function (res, el) {
+        res[el.topic] = el.current_level; // eslint-disable-line
+        return res;
+      });
     },
   },
   i18n: {
