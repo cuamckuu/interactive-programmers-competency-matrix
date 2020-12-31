@@ -6,6 +6,7 @@ import VueI18n from 'vue-i18n';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -16,9 +17,17 @@ const i18n = new VueI18n({
   fallbackLocale: 'en',
 });
 
+// TODO: Save leves to locaStorage
+// TODO: Store levels in url to share them
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  data() {
+    return {
+      store,
+    };
+  },
   router,
   i18n,
   components: { App },

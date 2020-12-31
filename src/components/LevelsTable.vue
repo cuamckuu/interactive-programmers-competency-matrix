@@ -10,14 +10,14 @@
       </b-thead>
 
       <b-tbody>
-        <b-tr v-for='(row, i) in items' :key='row.current_level'>
-          <b-td><b>{{ row.topic }}</b></b-td>
+        <b-tr v-for='(topic, i) in items' :key='topic'>
+          <b-td><b>{{ $t('levels.'+topic+'.name') }}</b></b-td>
           <template v-for='lvl in 4'>
-            <template v-if='row.current_level === (lvl-1)'>
+            <template v-if='levels[topic] === (lvl-1)'>
               <b-td
                 :key='lvl'
                 class='clickable selected'>
-                {{ row['level' + (lvl-1)] }}
+                {{ $t('levels.'+topic+'.level'+(lvl-1)) }}
               </b-td>
             </template>
             <template v-else>
@@ -25,7 +25,7 @@
                 :key='lvl'
                 class='clickable'
                 v-on:click='handleClick(i, lvl-1)'>
-                {{ row['level' + (lvl-1)] }}
+                {{ $t('levels.'+topic+'.level'+(lvl-1)) }}
               </b-td>
             </template>
           </template>
@@ -37,14 +37,17 @@
 
 
 <script>
+import levelsEN from '../assets/levels_en.json';
+import levelsRU from '../assets/levels_ru.json';
+
 export default {
   name: 'LevelsTable',
   props: [
-    'allitems',
+    'alltopics',
   ],
   data() {
     return {
-      items: this.allitems,
+      items: this.alltopics,
       fields: [
         'topic',
         'level0',
@@ -52,27 +55,21 @@ export default {
         'level2',
         'level3',
       ],
+      levels: this.$root.store.state.levels,
     };
   },
   methods: {
     handleClick(itemId, newLevel) {
-      this.items[itemId].current_level = newLevel;
-    },
-  },
-  computed: {
-    stats() {
       // eslint-disable-next-line
-      return this.items.reduce(function (res, el) {
-        res[el.topic] = el.current_level; // eslint-disable-line
-        return res;
-      });
+      console.log(this.items[itemId], newLevel);
+      const topicKey = this.items[itemId];
+      this.$root.store.setLevelAction(topicKey, newLevel);
     },
   },
   i18n: {
     messages: {
       en: {
-        meta: {
-        },
+        levels: levelsEN,
         fields: {
           topic: 'Topic',
           level0: '2^n (Level 0)',
@@ -82,8 +79,7 @@ export default {
         },
       },
       ru: {
-        meta: {
-        },
+        levels: levelsRU,
         fields: {
           topic: 'Тема',
           level0: '2^n (Уровень 0)',

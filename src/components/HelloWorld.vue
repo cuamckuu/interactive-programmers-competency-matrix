@@ -3,25 +3,24 @@
     <Nav></Nav>
 
     <div class='container'>
-      <h3>What is this?</h3>
+      <h3>{{ $t('meta.header') }}</h3>
 
       <blockquote class='blockquote'>
         This is an interactive version of 'Programmer Competency Matrix' originally created by <a href='https://sijinjoseph.netlify.app/#about'>Sijin Joseph</a>.
         This version contains skills statistics and recomendations.
       </blockquote>
       <p>
-        Note that the knowledge for each level is cumulative.
-        Being at level 'n' implies that you also know everything from the levels lower than 'n'.
+        {{ $t('meta.note') }}
       </p>
 
       <b-alert v-model='showHelp' dismissible>
         Click on table cells to select your level.
       </b-alert>
 
-      <div v-for="area in areas" :key='area'>
-        <h3>{{ $t('areas.'+area) }}</h3>
+      <div v-for="el in areas" :key='el.area'>
+        <h3>{{ $t('areas.'+el.area) }}</h3>
         <br>
-        <LevelsTable :allitems='getAreaItems(area)'></LevelsTable>
+        <LevelsTable :alltopics='el.topics'></LevelsTable>
         <br>
         <br>
       </div>
@@ -44,28 +43,18 @@ export default {
   data() {
     return {
       showHelp: true,
-      areas: [
-        'computer_science',
-        'software_engineering',
-        'programming',
-        'experience',
-        'knowledge',
-      ],
+      areas: allItemsList,
+      levels: this.$root.store.state.levels,
     };
-  },
-  methods: {
-    getAreaItems(area) {
-      // eslint-disable-next-line
-      return allItemsList.filter(x => x.area === area).map(function (x) {
-        x.current_level = -1; // eslint-disable-line
-        return x;
-      });
-    },
   },
   i18n: {
     messages: {
       en: {
         meta: {
+          header: "What is this?",
+          info: "This is an interactive version of 'Programmer Competency Matrix' originally created by Sijin Joseph. This version contains skills statistics and recomendations.",
+          tip: "Click on table cells to select your level.",
+          note: "Note that the knowledge for each level is cumulative. Being at level 'n' implies that you also know everything from the levels lower than 'n'.",
         },
         areas: {
           computer_science: 'Computer Science',
@@ -84,6 +73,10 @@ export default {
       },
       ru: {
         meta: {
+          header: "Куда я попал?",
+          info: "Это интерактивная версия 'Матрицы компетенций программиста', которая была создана Sijin Joseph. This version contains skills statistics and recomendations.",
+          tip: "Нажмите на ячейку в таблице, чтобы выбрать свой уровень",
+          note: "Каждый следующий уровень включает в себя предыдущий , т.е. разработчик находящийся на уровне 3 должен удовлетворять критериям двух предыдущих уровней.",
         },
         areas: {
           computer_science: 'Теория',
