@@ -5,19 +5,16 @@
     <div class='container'>
       <h3>{{ $t('meta.header') }}</h3>
 
-      <blockquote class='blockquote'>
-        This is an interactive version of 'Programmer Competency Matrix' originally created by <a href='https://sijinjoseph.netlify.app/#about'>Sijin Joseph</a>.
-        This version contains skills statistics and recomendations.
-      </blockquote>
+      <blockquote class='blockquote' v-html='$t("meta.info")'></blockquote>
       <p>
         {{ $t('meta.note') }}
       </p>
 
       <b-alert v-model='showHelp' dismissible>
-        Click on table cells to select your level.
+        {{ $t("meta.tip") }}
       </b-alert>
 
-      <div v-for="el in areas" :key='el.area'>
+      <div v-for='el in areas' :key='el.area'>
         <h3>{{ $t('areas.'+el.area) }}</h3>
         <br>
         <LevelsTable :alltopics='el.topics'></LevelsTable>
@@ -51,10 +48,10 @@ export default {
     messages: {
       en: {
         meta: {
-          header: "What is this?",
-          info: "This is an interactive version of 'Programmer Competency Matrix' originally created by Sijin Joseph. This version contains skills statistics and recomendations.",
-          tip: "Click on table cells to select your level.",
-          note: "Note that the knowledge for each level is cumulative. Being at level 'n' implies that you also know everything from the levels lower than 'n'.",
+          header: 'What is this?',
+          info: "This is an interactive version of 'Programmer Competency Matrix' originally created by <a href='https://sijinjoseph.netlify.app'>Sijin Joseph</a>. The main difference is that, this version contains skills statistics and recomendations.",
+          tip: 'Click on table cells to select your level.',
+          note: 'Note that the knowledge for each level is cumulative. Being at level \'n\' implies that you also know everything from the levels lower than \'n\'.',
         },
         areas: {
           computer_science: 'Computer Science',
@@ -73,10 +70,10 @@ export default {
       },
       ru: {
         meta: {
-          header: "Куда я попал?",
-          info: "Это интерактивная версия 'Матрицы компетенций программиста', которая была создана Sijin Joseph. This version contains skills statistics and recomendations.",
-          tip: "Нажмите на ячейку в таблице, чтобы выбрать свой уровень",
-          note: "Каждый следующий уровень включает в себя предыдущий , т.е. разработчик находящийся на уровне 3 должен удовлетворять критериям двух предыдущих уровней.",
+          header: 'Куда я попал?',
+          info: "Это интерактивная версия 'Матрицы компетенций программиста', которая была создана <a href='https://sijinjoseph.netlify.app'>Sijin Joseph</a>. Главным отличием этой версии является возможность делать свои отметки и получать статистику по своим навыкам и рекомендации по их улучшению. Русский перевод основан на <a href='https://github.com/omreps/programmer-competency-matrix'>этом Github проекте</a>",
+          tip: 'Нажмите на ячейку в таблице, чтобы выбрать свой уровень',
+          note: 'Каждый следующий уровень включает в себя предыдущий , т.е. разработчик находящийся на уровне 3 должен удовлетворять критериям двух предыдущих уровней.',
         },
         areas: {
           computer_science: 'Теория',
