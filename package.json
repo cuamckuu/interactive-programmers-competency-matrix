@@ -13,6 +13,7 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.1",
+    "mathjs": "^8.1.1",
     "vue": "^2.5.2",
     "vue-i18n": "^8.22.2",
     "vue-router": "^3.0.1"

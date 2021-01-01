@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 export default Vue.observable({
-  debug: true,
+  debug: false,
   localStorage: true,
   state: {
     levels: {

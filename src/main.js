@@ -13,12 +13,44 @@ Vue.use(BootstrapVue);
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-  locale: 'ru',
+  locale: ((navigator.languages && navigator.languages[0]) || '').substr(0, 2),
   fallbackLocale: 'en',
+  silentFallbackWarn: true,
+  messages: {
+    ru: {
+      areas: {
+        computer_science: 'Теория',
+        software_engineering: 'Разработка ПО',
+        programming: 'Программирование',
+        experience: 'Опыт',
+        knowledge: 'Знания',
+      },
+      fields: {
+        topic: 'Тема',
+        level0: '2^n (Уровень 0)',
+        level1: 'n^2 (Уровень 1)',
+        level2: 'n (Уровень 2)',
+        level3: 'log(n) (Уровень 3)',
+      },
+    },
+    en: {
+      areas: {
+        computer_science: 'Computer Science',
+        software_engineering: 'Software Engineering',
+        programming: 'Programming',
+        experience: 'Experience',
+        knowledge: 'Knowledge',
+      },
+      fields: {
+        topic: 'Topic',
+        level0: '2^n (Level 0)',
+        level1: 'n^2 (Level 1)',
+        level2: 'n (Level 2)',
+        level3: 'log(n) (Level 3)',
+      },
+    },
+  },
 });
-
-// TODO: Save leves to locaStorage
-// TODO: Store levels in url to share them
 
 /* eslint-disable no-new */
 new Vue({
