@@ -3,7 +3,9 @@
     <Nav></Nav>
 
     <h3>{{ $t('meta.header') }}</h3>
+
     <blockquote class='blockquote' v-html='$t("meta.info")'></blockquote>
+
     <p>
       {{ $t('meta.note') }}
     </p>
@@ -36,6 +38,8 @@
 
     <hr>
 
+    <Recomendations></Recomendations>
+
   </div>
 </template>
 
@@ -44,6 +48,7 @@ import allItemsList from '../assets/data.json';
 import Nav from './Nav';
 import LevelsTable from './LevelsTable';
 import StatsTable from './StatsTable';
+import Recomendations from './Recomendations';
 
 export default {
   name: 'HelloWorld',
@@ -51,6 +56,7 @@ export default {
     Nav,
     LevelsTable,
     StatsTable,
+    Recomendations,
   },
   data() {
     return {

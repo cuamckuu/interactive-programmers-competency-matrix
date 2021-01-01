@@ -4,9 +4,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import BootstrapVue from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
 import Vue from 'vue';
+
 import App from './App';
 import router from './router';
 import store from './store';
+
+import levelsEN from './assets/levels_en.json';
+import levelsRU from './assets/levels_ru.json';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -18,6 +22,7 @@ const i18n = new VueI18n({
   silentFallbackWarn: true,
   messages: {
     ru: {
+      levels: levelsRU,
       areas: {
         computer_science: 'Теория',
         software_engineering: 'Разработка ПО',
@@ -26,6 +31,7 @@ const i18n = new VueI18n({
         knowledge: 'Знания',
       },
       fields: {
+        level: 'Уровень',
         topic: 'Тема',
         level0: '2^n (Уровень 0)',
         level1: 'n^2 (Уровень 1)',
@@ -34,6 +40,7 @@ const i18n = new VueI18n({
       },
     },
     en: {
+      levels: levelsEN,
       areas: {
         computer_science: 'Computer Science',
         software_engineering: 'Software Engineering',
@@ -42,6 +49,7 @@ const i18n = new VueI18n({
         knowledge: 'Knowledge',
       },
       fields: {
+        level: 'Level',
         topic: 'Topic',
         level0: '2^n (Level 0)',
         level1: 'n^2 (Level 1)',

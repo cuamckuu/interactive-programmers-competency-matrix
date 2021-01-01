@@ -37,8 +37,6 @@
 
 
 <script>
-import levelsEN from '../assets/levels_en.json';
-import levelsRU from '../assets/levels_ru.json';
 
 export default {
   name: 'LevelsTable',
@@ -62,30 +60,6 @@ export default {
     handleClick(itemId, newLevel) {
       const topicKey = this.items[itemId];
       this.$root.store.setLevelAction(topicKey, newLevel);
-    },
-  },
-  i18n: {
-    messages: {
-      en: {
-        levels: levelsEN,
-        fields: {
-          topic: 'Topic',
-          level0: '2^n (Level 0)',
-          level1: 'n^2 (Level 1)',
-          level2: 'n (Level 2)',
-          level3: 'log(n) (Level 3)',
-        },
-      },
-      ru: {
-        levels: levelsRU,
-        fields: {
-          topic: 'Тема',
-          level0: '2^n (Уровень 0)',
-          level1: 'n^2 (Уровень 1)',
-          level2: 'n (Уровень 2)',
-          level3: 'log(n) (Уровень 3)',
-        },
-      },
     },
   },
 };
