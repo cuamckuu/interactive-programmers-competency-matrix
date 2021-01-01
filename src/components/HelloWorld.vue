@@ -49,7 +49,7 @@ export default {
       en: {
         meta: {
           header: 'What is this?',
-          info: "This is an interactive version of 'Programmer Competency Matrix' originally created by <a href='https://sijinjoseph.netlify.app'>Sijin Joseph</a>. The main difference is that, this version contains skills statistics and recomendations.",
+          info: "This is an interactive version of 'Programmer Competency Matrix' originally created by <a href='https://sijinjoseph.netlify.app'>Sijin Joseph</a>. The main difference is that, this version contains skills statistics and recomendations. Also your levels save to localStorage, so don't be afraid to close tab and come back later.",
           tip: 'Click on table cells to select your level.',
           note: 'Note that the knowledge for each level is cumulative. Being at level \'n\' implies that you also know everything from the levels lower than \'n\'.',
         },
@@ -71,7 +71,7 @@ export default {
       ru: {
         meta: {
           header: 'Куда я попал?',
-          info: "Это интерактивная версия 'Матрицы компетенций программиста', которая была создана <a href='https://sijinjoseph.netlify.app'>Sijin Joseph</a>. Главным отличием этой версии является возможность делать свои отметки и получать статистику по своим навыкам и рекомендации по их улучшению. Русский перевод основан на <a href='https://github.com/omreps/programmer-competency-matrix'>этом Github проекте</a>",
+          info: "Это интерактивная версия 'Матрицы компетенций программиста', которая была создана <a href='https://sijinjoseph.netlify.app'>Sijin Joseph</a>. Главным отличием этой версии является возможность делать свои отметки и получать статистику по своим навыкам и рекомендации по их улучшению. Кроме того, данные о вашем уровне сохраняются в localStorage, поэтому не бойтесь закрыть вкладку и вернуться позже. Русский перевод основан на <a href='https://github.com/omreps/programmer-competency-matrix'>этом Github проекте</a>",
           tip: 'Нажмите на ячейку в таблице, чтобы выбрать свой уровень',
           note: 'Каждый следующий уровень включает в себя предыдущий , т.е. разработчик находящийся на уровне 3 должен удовлетворять критериям двух предыдущих уровней.',
         },

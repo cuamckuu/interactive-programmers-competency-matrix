@@ -38,11 +38,12 @@ export default Vue.observable({
       domain_knowledge: -1,
     },
   },
-  setLevelAction(area, newLevel) {
+  setLevelAction(topic, newLevel) {
     if (this.debug) {
       // eslint-disable-next-line
-      console.log('setMessageAction triggered with', area, newLevel);
+      console.log('setMessageAction triggered with', topic, newLevel);
     }
-    this.state.levels[area] = newLevel;
+    localStorage[topic] = newLevel;
+    this.state.levels[topic] = newLevel;
   },
 });

@@ -28,6 +28,13 @@ new Vue({
       store,
     };
   },
+  mounted() {
+    for (const topic of Object.keys(this.store.state.levels)) {
+      if (localStorage[topic]) {
+        this.store.setLevelAction(topic, parseInt(localStorage[topic], 10));
+      }
+    }
+  },
   router,
   i18n,
   components: { App },
