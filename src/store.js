@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 export default Vue.observable({
   debug: true,
+  localStorage: true,
   state: {
     levels: {
       data_structures: -1,
@@ -43,7 +44,9 @@ export default Vue.observable({
       // eslint-disable-next-line
       console.log('setMessageAction triggered with', topic, newLevel);
     }
-    localStorage[topic] = newLevel;
+    if (this.localStorage) {
+      localStorage[topic] = newLevel;
+    }
     this.state.levels[topic] = newLevel;
   },
 });

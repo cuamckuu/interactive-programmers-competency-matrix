@@ -29,10 +29,24 @@ new Vue({
     };
   },
   mounted() {
-    for (const topic of Object.keys(this.store.state.levels)) {
-      if (localStorage[topic]) {
-        this.store.setLevelAction(topic, parseInt(localStorage[topic], 10));
-      }
+    const urlParams = new URLSearchParams(window.location.search);
+    const levelsData = urlParams.get('levels');
+
+    if (levelsData) {
+      this.store.localStorage = false;
+      const data = JSON.parse(atob(levelsData));
+
+      Object.keys(this.store.state.levels).forEach((topic) => {
+        this.store.setLevelAction(topic, parseInt(data[topic], 10));
+      });
+    } else {
+      this.store.localStorage = true;
+
+      Object.keys(this.store.state.levels).forEach((topic) => {
+        if (localStorage[topic]) {
+          this.store.setLevelAction(topic, parseInt(localStorage[topic], 10));
+        }
+      });
     }
   },
   router,
