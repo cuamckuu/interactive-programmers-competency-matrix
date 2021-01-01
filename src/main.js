@@ -29,6 +29,8 @@ new Vue({
     };
   },
   mounted() {
+    document.title = 'Programmer\'s Competency Matrix';
+
     const urlParams = new URLSearchParams(window.location.search);
     const levelsData = urlParams.get('levels');
 
