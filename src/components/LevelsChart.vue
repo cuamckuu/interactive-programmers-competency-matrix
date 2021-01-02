@@ -7,7 +7,7 @@ export default {
   computed: {
     data() {
       return this.chartdata;
-    }
+    },
   },
   methods: {
     render() {
@@ -17,13 +17,10 @@ export default {
   watch: {
     data() {
       this.render();
-    }
+    },
   },
   mounted() {
     this.render();
   },
 };
 </script>
-
-<style>
-</style>

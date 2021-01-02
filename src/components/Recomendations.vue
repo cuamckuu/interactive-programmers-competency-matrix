@@ -24,9 +24,9 @@ export default {
       chartOptions: {
         scales: {
           yAxes: [{
-              ticks: {
-                  fontSize: 18,
-              },
+            ticks: {
+              fontSize: 18,
+            },
           }],
         },
       },
@@ -36,12 +36,12 @@ export default {
     chartData() {
       const items = [];
 
-      for (const el of this.allAreas) {
-        for (const topic of el.topics) {
+      this.allAreas.forEach((el) => {
+        el.topics.forEach((topic) => {
           const level = this.levels[topic];
           items.push([this.$t(`levels.${topic}.name`), level]);
-        }
-      }
+        });
+      });
 
       const sortedItems = items.sort((a, b) => a[1] - b[1]);
 
@@ -67,7 +67,7 @@ export default {
       for (let i = 0; i < 6; i += 1) {
         color += letters[Math.floor(Math.random() * 16)];
       }
-      return color+'aa';
+      return `${color}aa`;
     },
   },
   i18n: {

@@ -55,15 +55,15 @@ export default {
       const res = {};
       const allLevels = [];
 
-      for (const el of this.areas) {
+      this.areas.forEach((el) => {
         const areaLevels = [];
 
-        for (const topic of el.topics) {
+        el.topics.forEach((topic) => {
           const level = this.levels[topic];
 
           areaLevels.push(level);
           allLevels.push(level);
-        }
+        });
 
         if (areaLevels.includes(-1)) {
           res[el.area] = {
@@ -78,7 +78,7 @@ export default {
             std: std(areaLevels).toFixed(2),
           };
         }
-      }
+      });
 
       if (allLevels.includes(-1)) {
         res.total = {
