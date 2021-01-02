@@ -27,7 +27,7 @@
       </b-alert>
     </template>
     <template v-else>
-      <b-alert v-model='showHelp' v-html='$t("meta.warn")'></b-alert>
+      <b-alert variant='warning' v-model='showHelp' v-html='$t("meta.warn")'></b-alert>
     </template>
 
     <div v-for='el in allAreas' :key='el.area'>
